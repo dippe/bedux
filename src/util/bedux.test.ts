@@ -5,13 +5,13 @@ enum Types {
 }
 
 interface IAction {
-    type: Types,
-    payload: string
+    type: Types;
+    payload: string;
 }
 
 interface IState {
-    a: string,
-    b: boolean
+    a: string;
+    b: boolean;
 }
 
 type IReducer = (state: IState, action: IAction) => (IState);
@@ -23,12 +23,12 @@ let hiddenState: IState;
 const reducers: Map<string, IReducer> = new Map<string, IReducer>();
 
 function dispatch(action: IAction) {
-    let reducer: IReducer | undefined = reducers.get(action.type);
+    const reducer: IReducer | undefined = reducers.get(action.type);
 
     if (reducer !== undefined) {
         reducer((hiddenState as IState), (action as IAction));
     } else {
-        throw `Missing reducer: ${action.type}`
+        throw new Error(`Missing reducer: ${action.type}`);
     }
 }
 
@@ -40,12 +40,13 @@ function helloReducer(state: IState = {b: false, a: 'nincs'}, action: IAction) {
     if (action.type === Types.TO_TRUE) {
         state.b = true;
     } else if (action.type === Types.HELLO) {
-        state.a = 'Hello'
+        state.a = 'Hello';
     }
 }
 
-it('asd', function () {
-    let tmp = new Map();
+it('asd', function() {
+    const tmp = new Map();
+    debugger;
     tmp.set(Types.HELLO, helloReducer);
 
     addReducers(tmp);
@@ -53,6 +54,6 @@ it('asd', function () {
     dispatch({
         type: Types.HELLO,
         payload: 'test'
-    })
+    });
 
 });

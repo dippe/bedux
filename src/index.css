@@ -3,3 +3,24 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+div {
+  border: 1px solid red;
+  padding: 2px;
+}
+
+div.s_table {
+  width: 1000px;
+}
+
+div.s_tr {
+  width: 100%;
+}
+
+div.s_td {
+  display: inline-flex;
+  flex-flow: column; 
+  /* width: 100px; */
+  height: 20px;
+}
+
